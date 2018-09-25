@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- bootstrap 4.0.0-beta.2 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- main style -->
+    <link rel="stylesheet" type="text/css" href="css/main.css?v=2018.09.20">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107490980-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments)};
+        gtag('js', new Date());
+
+        gtag('config', 'UA-107490980-1');
+    </script>
+</head>
+<body>
+<header>
+    <div class='slider-navigation'>
+        <div class='nav-pointer draggable'>
+            0/0
+        </div>
+    </div>
+</header>
+<div class='site-container'>
+<!-- select style button -->
+<div class="btn-group" id="changestyle">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span id="selstyle">Style Default</span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#" data-val="default">Style Default</a></li>
+        <li><a class="dropdown-item" href="#" data-val="space">Style Space</a></li>
+        <li><a class="dropdown-item" href="#" data-val="snow">Style Snow</a></li>
+    </ul>
+</div>
+<section class='intro'>
+    <div id='particles-js'></div>
+    <div class='wrap'>
+        <div class='content'>
+            <div class="profile-card">
+                <header>
+                    <!-- avatar -->
+                    <a><img src="https://media.licdn.com/dms/image/C5103AQHf-Ew_-QT6xw/profile-displayphoto-shrink_200_200/0?e=1543449600&v=beta&t=smedVNvpHOivjJb7KxVCp6dIl1BM5ol0EldEtEDZ3T4" class="unselectable"></a>
+                    <!-- name -->
+                    <h1 class="unselectable">Abdallah A Galia</h1>
+                    <!-- role -->
+                    <h2 class="unselectable">Full Stack Developer</h2>
+                </header>
+                <div class="profile-bio">
+                    <p class="unselectable">
+                        Passionate about technology
+                        <br>Open source Enthusiast
+                    </p>
+                </div>
+                <!-- social links -->
+                <ul class="profile-social-links">
+                    <li><a target="_blank" href="https://www.linkedin.com/in/abdallah-abdillah-25a938b1/">
+                            <i class="fa fa-lg fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li><a target="_blank" href="https://stackoverflow.com/users/6769721/waploaj">
+                            <i class="fa fa-lg fa-stack-overflow"></i>
+                        </a>
+                    </li>
+                    <li><a target="_blank" href="https://github.com/waploaj">
+                            <i class="fa fa-lg fa-github-alt"></i>
+                        </a>
+                    </li>
+                    <li><a target="_blank" href="https://www.facebook.com/duurhla">
+                            <i class="fa fa-lg fa-facebook"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- =================== script =================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="lib/parallax.js-1.4.2/parallax.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+
+<!-- particles js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<!-- bootstrap 4.0.0-beta.2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<!-- main js file -->
+<script src="js/main.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        styleDefault();
+
+        $('#changestyle .dropdown-menu a').click(function(){
+            var style = $(this).data('val');
+            switch(style) {
+                case 'default':
+                    styleDefault();
+                     break;
+                case 'space':
+                    styleSpace();
+                    break;
+                case 'snow':
+                    styleSnow();
+                    break;
+                default:
+                    styleDefault();
+            }
+            $('#selstyle').text($(this).text());
+        });
+
+        /*-------------------------------
+            terminal linux style
+        -------------------------------*/
+        var about_me_content_displayed = false;
+        var $lines = $('.command p');
+        $lines.hide();
+
+        var lineContents = [];
+        var output = [];
+
+        var terminal = function() {
+            var skip = 0;
+            typeLine = function(idx) {
+                idx == null && (idx = 0);
+                var element = $lines.eq(idx);
+                var content = lineContents[idx];
+                if(typeof content == "undefined") {
+                    $('.skip').hide();
+                    return;
+                }
+                var charIdx = 0;
+                var typeChar = function() {
+                    var rand = Math.round(Math.random() * 150) + 20;
+
+                    setTimeout(function() {
+                        var char = content[charIdx++];
+                        element.append(char);
+                        if(typeof char !== "undefined")
+                            typeChar();
+                        else {
+                            element.append('<br/><span class="output">' + output[idx] + '</span>');
+                            element.removeClass('active');
+                            typeLine(++idx);
+                        }
+                    }, skip ? 0 : rand);
+                }
+                element.append('[ec2-user@ip-127-0-0-1 ~]$ ').addClass('active');
+                typeChar();
+            }
+
+            $lines.each(function(i) {
+                lineContents[i] = $(this).text();
+                output[i] = $(this).next('span').html();
+                $(this).text('').show();
+            });
+            typeLine();
+        }
+
+        $(window).scroll(function() {
+            var hT = $('#terminal-start').offset().top,
+                hH = $('#terminal-start').outerHeight(),
+                wH = $(window).height(),
+                wS = $(this).scrollTop() - 250;
+            if (wS > (hT+hH-wH) && !about_me_content_displayed) {
+                about_me_content_displayed = true;
+                terminal();
+            }
+        });// end terminal style -------
+
+        $('section').each(function() {
+            $('.slider-navigation').prepend('<div class="tick"></div>');
+        });
+
+        $('.tick').on('click', function() {
+            var tickIndex = $(this).index();
+            $('body').scrollTop($(window).height() * tickIndex);
+        });
+
+        updatePos();
+    }); // end document ready -------
+
+    var isDragging = false;
+    var sliderTop, pointerPos, currentSection;
+
+    var bodyHeight = $('body').height();
+    var sliderHeight = $('.slider-navigation').height();
+    var elementHeight = $('section').height();
+    var sectionAmount = $('section').length;
+    var scale = (bodyHeight - (elementHeight)) / (sliderHeight - $('.nav-pointer').outerHeight());
+
+    var waitForFinalEvent = (function() {
+        var timers = {};
+        return function(callback, ms, uniqueId) {
+            if (!uniqueId) {
+                uniqueId = "resize";
+            }
+            if (timers[uniqueId]) {
+                clearTimeout(timers[uniqueId]);
+            }
+            timers[uniqueId] = setTimeout(callback, ms);
+        };
+    })();
+
+    function updatePos() {
+        currentSection = $(window).scrollTop() / elementHeight;
+        currentSectionNum = Math.ceil(currentSection + 0.01);
+        sliderTop = $(window).scrollTop() / scale;
+        $('.nav-pointer').css('top', sliderTop).text(currentSectionNum + '/' + sectionAmount);
+    }
+
+    function sliderMove(e) {
+        $('body').scrollTop(parseInt(e) * scale);
+    }
+
+    $(window).scroll(function() {
+        if (!isDragging) {
+            updatePos();
+        }
+    });
+
+    $(window).resize(function() {
+        waitForFinalEvent(function() {
+            bodyHeight = $('body').height();
+            sliderHeight = $('.slider-navigation').height();
+            elementHeight = $('section').height();
+            sectionAmount = $('section').length;
+            scale = (bodyHeight - (elementHeight)) / (sliderHeight - $('.nav-pointer').outerHeight());
+
+            updatePos();
+        }, 500, "resizing");
+    });
+
+    // $(".draggable").draggable({
+    //  axis: "y",
+    //  containment: "parent",
+    //  start: function() {
+    //      isDragging = true;
+    //      $('body').addClass('dragging');
+    //  },
+    //  drag: function() {
+    //      pointerPos = $(this).css('top');
+    //      sliderMove(pointerPos);
+    //      updatePos();
+    //  },
+    //  stop: function() {
+    //      isDragging = false;
+    //      $('body').removeClass('dragging');
+    //  }
+    // });
+
+    // Steve Jobs Quotes
+    console.log("\n \t Your work is going to fill a large part of your life,\n and the only way to be "+
+                "truly satisfied is to do what you \n believe is great work. And the only way to do great"+
+                " work \n is to love what you do. If you haven't found it yet, keep \n looking. Don't settle."+
+                " As with all matters of the heart, \n you'll know when you find it.\n\n\n \t\t\t\t\t\t\t\t\t\t\t "+
+                "Steve Jobs \n\n");
+
+</script>
+</body>
+</html>
